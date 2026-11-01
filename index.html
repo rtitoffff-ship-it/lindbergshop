@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LindbergShop — The Apple. The Future.</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 80px;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,5,5,0.97);
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+    background: radial-gradient(ellipse at center, #242424, #050505 70%);
+}
+
+.hero-label {
+    color: #888;
+    letter-spacing: 6px;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 10vw, 115px);
+    letter-spacing: -6px;
+}
+
+.hero h2 {
+    color: #999;
+    font-size: clamp(30px, 5vw, 55px);
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.hero p {
+    color: #888;
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+.button {
+    margin-top: 35px;
+    padding: 16px 35px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #ccc;
+    transform: scale(1.04);
+}
+
+.section-title {
+    text-align: center;
+    padding: 90px 20px 45px;
+}
+
+.section-title h2 {
+    font-size: 42px;
+    letter-spacing: -1px;
+}
+
+.section-title p {
+    color: #888;
+    margin-top: 15px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 0 8% 100px;
+}
+
+.product {
+    background: #111;
+    border: 1px solid #252525;
+    border-radius: 18px;
+    padding: 22px;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-7px);
+    border-color: #777;
+}
+
+.product img {
+    width: 100%;
+    height: 230px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.tag {
+    color: #888;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.product h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.description {
+    color: #888;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 42px;
+}
+
+.price {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 22px 0;
+}
+
+.order-button {
+    width: 100%;
+    padding: 14px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.order-button:hover {
+    background: #ccc;
+}
+
+.about {
+    background: #101010;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.about h2 {
+    font-size: 42px;
+    margin-bottom: 25px;
+}
+
+.about p {
+    color: #888;
+    line-height: 1.9;
+    max-width: 600px;
+    margin: auto;
+}
+
+.contact {
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.contact h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    color: #888;
+    line-height: 2;
+}
+
+footer {
+    border-top: 1px solid #222;
+    text-align: center;
+    padding: 35px 20px;
+    color: #666;
+    font-size: 12px;
+    line-height: 2;
+}
+
+@media(max-width: 900px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        height: auto;
+        padding: 22px 10px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+        padding: 0 7% 60px;
+    }
+
+    .hero {
+        min-height: 530px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+}
+.cart-panel {
+    display: none;
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    width: min(380px, calc(100vw - 40px));
+    max-height: 70vh;
+    overflow: auto;
+    background: #111;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 16px;
+    padding: 20px;
+    z-index: 200;
+    box-shadow: 0 15px 45px rgba(0,0,0,.6);
+}
+
+.cart-panel.open {
+    display: block;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cart-header button,
+.quantity-button,
+.remove-button {
+    background: #292929;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 7px 11px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.cart-item-price {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+}
+
+.cart-total {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.cart-empty {
+    color: #999;
+    padding: 12px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header><div id="cart-panel" class="cart-panel" aria-hidden="true">
+    <div class="cart-header">
+        <h2>Корзина</h2>
+        <button type="button" onclick="toggleCart()">✕</button>
+    </div>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-total">
+        Итого: <span id="cart-total">0 ₽</span>
+    </div>
+
+    <button class="order-button" type="button" onclick="checkout()">
+        Оформить заявку
+    </button>
+</div>
+    <div class="logo">LINDBERGSHOP.</div>
+<button class="order-button" onclick="toggleCart()">
+    Корзина 🛒 <span id="cart-count">0</span>
+</button>
+    <nav>
+        <a href="#">Главная</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+</header>
+
+<!-- ГЛАВНЫЙ ЭКРАН -->
+
+<section class="hero">
+
+    <div class="hero-label">PREMIUM TECHNOLOGY STORE</div>
+
+    <h1>The Apple.</h1>
+
+    <h2>The Future.</h2>
+
+    <p>Технологии, которые меняют будущее.</p>
+
+    <button class="button"
+    onclick="document.getElementById('catalog').scrollIntoView()">
+        Исследовать →
+    </button>
+
+</section>
+
+<!-- КАТАЛОГ -->
+
+<section id="catalog">
+
+    <div class="section-title">
+        <h2>Our Collection.</h2>
+        <p>Коллекция технологий 2026 года.</p>
+    </div>
+
+    <div class="products">
+
+        <!-- 1 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=700"
+            alt="iPhone 18 Pro Max">
+
+            <div class="tag">NEW 2026</div>
+
+            <h3>iPhone 18 Pro Max</h3>
+
+            <p class="description">
+                Максимальная мощность.
+                Премиальный дизайн. 256 ГБ.
+            </p>
+
+            <div class="price">189 990 ₽</div>
+
+            <button class="order-button"
+            onclick="order('iPhone 18 Pro Max', '189 990 ₽')">
+                Заказать
+            </button>
+        </div>
+
+        <!-- 2 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=700"
+            alt="iPhone 18 Pro">
+
+            <div class="tag">NEW 2026</div>
+
+            <h3>iPhone 18 Pro</h3>
+
+            <p class="description">
+                Камера нового поколения.
+                Стиль и производительность. 256 ГБ.
+            </p>
+
+            <div class="price">174 990 ₽</div>
+
+            <button class="order-button"
+            onclick="order('iPhone 18 Pro', '174 990 ₽')">
+                Заказать
+            </button>
+        </div>
+
+        <!-- 3 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=700"
+            alt="MacBook Air M5">
+
+            <div class="tag">MACBOOK COLLECTION</div>
+
+            <h3>MacBook Air M5</h3>
+
+            <p class="description">
+                Лёгкий. Быстрый.
+                Создан для твоих идей. 512 ГБ.
+            </p>
+
+            <div class="price">172 990 ₽</div>
+
+            <button class="order-button"
+            onclick="order('MacBook Air M5', '172 990 ₽')">
+                Заказать
+            </button>
+        </div>
+
+        <!-- 4 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700"
+            alt="MacBook Pro M5 Pro">
+
+            <div class="tag">PRO COLLECTION</div>
+
+            <h3>MacBook Pro M5 Pro</h3>
+
+            <p class="description">
+                Профессиональная мощность.
+                Для больших проектов.
+            </p>
+
+            <div class="price">211 490 ₽</div>
+
+            <button class="order-button"
+            onclick="order('MacBook Pro M5 Pro', '211 490 ₽')">
+                Заказать
+            </button>
+        </div>
+
+        <!-- 5 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=700"
+            alt="AirPods 5">
+
+            <div class="tag">NEW 2026</div>
+
+            <h3>AirPods 5</h3>
+
+            <p class="description">
+                Чистый звук.
+                Свобода движения.
+            </p>
+
+            <div class="price">18 999 ₽</div>
+
+            <button class="order-button"
+            onclick="order('AirPods 5', '18 999 ₽')">
+                Заказать
+            </button>
+        </div>
+
+        <!-- 6 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=700"
+            alt="Apple Watch Series 12">
+
+            <div class="tag">NEW 2026</div>
+
+            <h3>Apple Watch Series 12</h3>
+
+            <p class="description">
+                Технологии и стиль
+                на твоём запястье. 42 мм.
+            </p>
+
+            <div class="price">54 999 ₽</div>
+
+            <button class="order-button"
+            onclick="order('Apple Watch Series 12', '54 999 ₽')">
+                Заказать
+            </button>
+        </div>
+
+        <!-- 7 -->
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700"
+            alt="Apple Watch Ultra 4">
+
+            <div class="tag">ULTRA COLLECTION</div>
+
+            <h3>Apple Watch Ultra 4</h3>
+
+            <p class="description">
+                Для активного образа жизни.
+                Максимальная функциональность.
+            </p>
+
+            <div class="price">109 999 ₽</div>
+
+            <button class="order-button"
+            onclick="order('Apple Watch Ultra 4', '109 999 ₽')">
+                Заказать
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- О МАГАЗИНЕ -->
+
+<section class="about" id="about">
+
+    <h2>Think Different.</h2>
+
+    <p>
+        Welcome to LindbergShop.
+
+        Мы объединяем современные технологии,
+        минимализм и премиальный стиль.
+
+        Открой для себя мир инноваций
+        вместе с LindbergShop.
+    </p>
+
+</section>
+
+<!-- КОНТАКТЫ -->
+
+<section class="contact" id="contacts">
+
+    <h2>Contact Us.</h2>
+
+    <p>
+        LINDBERGSHOP.<br>
+        The Apple. The Future.<br>
+        По вопросам заказа обращайтесь к администрации магазина.
+    </p>
+
+</section>
+
+<footer>
+
+    <h3>LINDBERGSHOP.</h3>
+
+    <p>The Apple. The Future.</p>
+
+    <p>© 2026 LindbergShop. All rights reserved.</p>
+
+    <p>Независимый магазин. Не является официальным магазином Apple.</p>
+
+    <p>Цены ориентировочные и могут меняться.</p>
+
+</footer>
+
+<script>
+
+function order(product, price) {
+
+    alert(
+        "LINDBERGSHOP\n\n" +
+        "Вы выбрали: " + product +
+        "\nЦена: " + price +
+        "\n\nСпасибо за интерес к нашему магазину!" +
+        "\nСвяжитесь с администрацией для оформления заказа."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
